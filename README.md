@@ -37,6 +37,11 @@ def ___init___:
 - Mendefinisikan function `reset_transaction` untuk menghapus semua data transaksi
 - Mendefinisikan function `check_order` untuk mengecek kembali detail item yang telah diinputkan
 - Mendefinisikan function `total_price` untuk mengetahui detail pembayaran
+## Cara Penggunaan Program
+- Download semua file/module Python ke dalam satu direktori lokal.
+- Buka terminal dan sesuaikan lokasi direktori lokal.
+- Jalankan module python `Cashier_System.py` di terminal.
+- Output akan ditampilkan sesuai Case yang telah diskenariokan
 ## Penjelasan Code
 Script `Cashier_System.py` berfungsi untuk menjalankan program yang berisi function diatas, sekaligus melakukan test case
 ### Class Transaction
@@ -149,7 +154,7 @@ Method `update_item_name` memerlukan beberapa parameter seperti `nama_item: str`
 apakah `nama_item` yang akan diganti terdapat dalam `Dataframe`, apabila tidak ada akan ditampilkan `typeError`. Apabila ada, maka akan dicek kesesuaian
 tipe data `nama_item` dan `update_nama_item`. Apabila tipe data tidak sesuai akan ditampilkan `typeError`. Apabila tipe data sudah sesuai, maka `nama_item` 
 akan diubah menjadi `update_nama_item`.  
-####Update_Item_Quantity
+#### Update_Item_Quantity
 ```
 def update_item_quantity(self, nama_item: str, update_jumlah_item: int):
         """Fungsi untuk memperbarui/mengganti jumlah_item 
@@ -194,7 +199,7 @@ Method `update_item_quantity` memerlukan beberapa parameter seperti `nama_item: 
 apakah `nama_item` yang akan diganti terdapat dalam `Dataframe`, apabila tidak ada akan ditampilkan `typeError`. Apabila ada, maka akan dicek kesesuaian
 tipe data `nama_item` dan `update_jumlah_item`. Apabila tipe data tidak sesuai akan ditampilkan `typeError`. Apabila tipe data sudah sesuai, maka jumlah item `nama_item` 
 akan diubah menjadi `update_jumlah_item`. 
-####Update_Item_Price
+#### Update_Item_Price
 ```
  def update_item_price(self, nama_item: str, update_harga: float or int):
         """Fungsi untuk menmperbarui/mengganti harga 
@@ -242,7 +247,7 @@ Method `update_item_price` memerlukan beberapa parameter seperti `nama_item: str
 apakah `nama_item` yang akan diganti terdapat dalam `Dataframe`, apabila tidak ada akan ditampilkan `typeError`. Apabila ada, maka akan dicek kesesuaian
 tipe data `nama_item` dan `update_harga`. Apabila tipe data tidak sesuai akan ditampilkan `typeError`. Apabila tipe data sudah sesuai, maka harga item `nama_item` 
 akan diubah menjadi `update_harga`.
-####Delete_Item
+#### Delete_Item
 ```
   def delete_item(self, nama_item: str):
         """Fungsi untuk menghapus item 
@@ -292,7 +297,7 @@ Method `delete_item` memerlukan parameter `nama_item: str` . Proses diawali deng
 apakah `nama_item` yang akan dihapus terdapat dalam `Dataframe`, apabila tidak ada akan ditampilkan `typeError`. Apabila ada, maka akan dicek kesesuaian
 tipe data `nama_item`. Apabila tipe data tidak sesuai akan ditampilkan `typeError`. Apabila tipe data sudah sesuai, maka kolom dimana `nama_item` tersebut ada
 dalam dataframe akan dihapus kemudian ditampilkan tabel pemesanan yang tersisa.
-####Reset_Transaction
+#### Reset_Transaction
 ```
 def reset_transaction(self):
         """Fungsi untuk menghapus semua item yang ada dalam attribute class data
@@ -314,7 +319,7 @@ def reset_transaction(self):
 ```
 Method `reset_transaction` tidak membutuhkan parameter apapun karena langsung menggunakan method `drop` untuk menghapus seluruh item yang ada dalam `Dataframe`. Kemudian akan
 menampilkan pesan Semua item berhasil di delete! dan tabel kosong
-####Check_Ordee
+#### Check_Order
 ```
  def check_order(self):
         """Fungsi untuk mengecek kembali item yang telah diinputkan
@@ -337,7 +342,7 @@ menampilkan pesan Semua item berhasil di delete! dan tabel kosong
  ```
 Method `check_order` diawali dengan menyalin `Dataframe` dari atribute class data untuk membuat `Dataframe` baru yang ditambahkan satu kolom baru berisi `Total_Price`
 dari item yang merupakan perkalian dari `Quantity` dan `Price`. Hasil perhitungan ini kemudian ditampilkan dalam bentuk tabel pesanan
-####Total_Price
+#### Total_Price
 ```
  def total_price(self):
         """Fungsi untuk menghitung total transaksi dari item yang diinputkan, termasuk diskon yang diperoleh
@@ -391,4 +396,86 @@ variabel `total` untuk memperoleh total pembayaran dari keseluruhan item,dengan 
   - Jika total belanja di atas Rp.300.000 maka akan mendapatkan diskon 8%
   - Jika total belanja di atas Rp.500.000 maka akan mendapatkan diskon 10%
 ## Hasil Test Case
-###
+### Test Case 1
+Customer ingin menambahkan dua item menggunakan method add_item(). Item yang ditambahkan adalah :
+- Nama Item: Ayam Goreng, Qty: 2, Harga: 20.000
+- Nama Item: Pasta Gigi, Qty: 3, Harga: 15.000
+```
+# Test Case 1
+# Add Item 1
+print("Test Case 1")
+print("--------------------------------------------------------------------------")
+user.add_item("Ayam Goreng", 2, 20_000)
+print("\n")
+# Add Item 2
+user.add_item("Pasta Gigi", 3, 15_000)
+print("\n")
+print("Tabel pemesanan :")
+user.check_order()
+user.total_price()
+```
+Output :
+<br /> 
+![This is an image](https://github.com/achmadfanany/cashier-system-project/blob/main/Test_Case1.PNG)
+<br /> 
+### Test Case 2
+Ternyata Customer salah membeli salah satu item yang sudah ditambahkan, maka Customer menggunakan method `delete_item()` untuk menghapus item. Item yang ingin dihapus adalah Pasta Gigi
+```
+# Test Case 2
+# Delete pasta gigi from order table
+print("\n")
+print("Test Case 2")
+print("--------------------------------------------------------------------------")
+user.delete_item("Pasta Gigi")
+print("Table Pemesanan:")
+user.check_order()
+user.total_price()
+
+```
+Output:
+<br /> 
+![This is an image](https://github.com/achmadfanany/cashier-system-project/blob/main/Test_Case2.PNG)
+<br /> 
+### Test Case 3
+Ternyata Customer salah memasukkan item yang ingin dibelanjakan dan ingin menhapus semua item. Customer cukup menggunakan method 'reset_transaction()' untuk menghapus semua item yang sudah ditambahkan.
+```
+# Test Case 3
+# Reset all transaction
+print("\n")
+print("Test Case 3")
+print("--------------------------------------------------------------------------")
+user.reset_transaction()
+```
+Output:
+<br /> 
+![This is an image](https://github.com/achmadfanany/cashier-system-project/blob/main/Test_Case3.PNG)
+<br /> 
+### Test Case 4
+Setelah Customer selesai berbelanja, dilakukan perhitungan total belanja dengan menggunakan method `total_price()`. Detail item yang dibeli akan ditampilkan sebelum mengeluarkan output total belanja.
+```
+# Test Case 4
+print("\n")
+print("Test Case 4")
+print("--------------------------------------------------------------------------")
+# Add Item 1
+user.add_item("Ayam Goreng", 2, 20_000)
+print("\n")
+# Add Item 2
+user.add_item("Pasta Gigi", 3, 15_000)
+print("\n")
+# Add Item 3
+user.add_item("Mainan Mobil", 1, 200_000)
+print("\n")
+# Add Item 4
+user.add_item("Mie Instan", 5, 3_000)
+print("\n")
+print("Tabel Pemesanan :")
+user.check_order()
+user.total_price()
+```
+Output:
+<br /> 
+![This is an image](https://github.com/achmadfanany/cashier-system-project/blob/main/Test_Case4.PNG)
+<br /> 
+## Conclusion/ Future Work
+Sistem Kasir self-service yang dikembangkan sudah bekerja dengan baik, namun dapat ditingkatkan agar lebih efisien, dengan membuat modular code dan input parameter yang bisa dimasukkan secara otomatis.
